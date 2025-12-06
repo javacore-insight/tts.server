@@ -1,38 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Javacore Insight</title>
-  <style>
-    body {
-      margin: 0;
-      background: #0d0d0d;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-      text-align: center;
-    }
-    h1 {
-      font-size: 32px;
-      letter-spacing: 1px;
-    }
-    p {
-      opacity: 0.7;
-      font-size: 16px;
-      margin-top: 5px;
-    }
-    .glow {
-      text-shadow: 0 0 10px #00b3ff, 0 0 20px #00b3ff;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javacore TTS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0d0d0d;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+        textarea {
+            width: 90%;
+            max-width: 600px;
+            height: 150px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 25px;
+            background: #007bff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  <h1 class="glow">Javacore Insight</h1>
-  <p>Knowledge Never Ends.</p>
+
+    <h1>Javacore Insight — Text to Speech</h1>
+
+    <textarea id="textInput" placeholder="Masukkan teks di sini..."></textarea>
+
+    <button onclick="speakText()">Generate Audio</button>
+
+    <script>
+        function speakText() {
+            const text = document.getElementById("textInput").value;
+            if (!text) {
+                alert("Masukkan teks terlebih dahulu!");
+                return;
+            }
+
+            const utter = new SpeechSynthesisUtterance(text);
+
+            // Pilih suara default (bisa kamu ganti nanti)
+            utter.rate = 1;      // kecepatan
+            utter.pitch = 1;     // pitch
+            utter.volume = 1;    // volume
+
+            speechSynthesis.speak(utter);
+        }
+    </script>
+
 </body>
 </html>
